@@ -6,6 +6,12 @@ ESP32 firmware package uploader + BLE DFU runner for Nordic OTA-compatible targe
 
 This release repo contains binaries and usage docs only.
 
+## Latest Releases
+
+Download the latest firmware artifacts from:
+
+- https://github.com/cra0/esp32-nordic-ota-dfu/releases
+
 ## What This Does
 
 1. Creates a local Wi-Fi AP so you can upload a Nordic DFU `.zip` package.
