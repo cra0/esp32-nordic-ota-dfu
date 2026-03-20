@@ -15,6 +15,15 @@ Download the latest firmware artifacts from:
 Use a flasher such as ESPTool
 - https://github.com/espressif/esptool/releases
 
+## Flash Instructions
+
+You can use esptool to flash the merged.bin firmware (which contains everything) into the target device like so:
+
+`esptool.exe --chip esp32 --port COM12 write-flash 0x0 esp32\blecent-esp32-merged.bin`
+
+Where chip sets the target chipset, port is the connected port and the path at the end points to the bin.
+
+
 ## What This Does
 
 1. Creates a local Wi-Fi AP so you can upload a Nordic DFU `.zip` package.
