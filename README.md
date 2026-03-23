@@ -96,12 +96,15 @@ The reset button is always a hardware reboot.
 
 ## Recommended Operator Flow
 
-1. Power on device.
-2. Connect to AP and upload package.
-3. Confirm status is healthy.
-4. Tap **Reboot to BLE** (or long-press left button).
-5. Let updater scan and flash.
-6. Return to AP mode later when you need to change package or review logs.
+1. When the esp32 starts up for the first time it checks if it has a valid package, if not it starts in AP (Access Point) mode where there is a WI-FI access point for you to connect to (for now called `drone-updater` with `meshcore123` as the password).
+2. You connect to that AP and go to the url `http://192.168.4.1/ui` and upload your zip package for the target meshcore node you want to flash.
+3. You then can press reboot to bluetooth or powercycle the esp32 it will then start its scanning constantly. You can pause the scan at any time by pressing the program/boot button. Holding down that button for 5 seconds will force it back into AP mode.
+4. You then yes login to the repeaters admin panel and go into the console and write `start ota` it will then give you the MAC address of the bluetooth advert.
+5. You then fly the drone or bring the device close to the repeater (if you have an external antenna it can work up to 10 meters)
+6. Typically the update takes 10 seconds but you can wait as long as you like. Right now there is no way to tell what happened *this is a problem for later for me to solve* 
+7. If you then try to login again to the device on the meshcore app and it worked and the clock was reset you can tell it worked.
+8. **To confirm it worked you type `ver` in the console**
+9. Then when you get the drone back you can always put it back into AP mode by holding the program/boot button for 5secs then view the logs to see what happened.
 
 ## Notes
 
