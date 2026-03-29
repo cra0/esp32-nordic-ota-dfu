@@ -31,6 +31,8 @@ Where chip sets the target chipset, port is the connected port and the path at t
 3. Reboots into BLE update mode and automatically scans for DFU targets.
 4. Performs DFU and keeps logs you can review later from the web UI.
 
+## Step 0: It is important you have the OTAFix installed as the bootloader. [Please see here](https://github.com/oltaco/Adafruit_nRF52_Bootloader_OTAFIX)
+
 ## Step 1: Connect to ESP32 AP
 
 On your phone, connect to:
