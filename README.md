@@ -121,3 +121,9 @@ The reset button is always a hardware reboot.
   - Password: `meshcore123`
 - BLE scanning and DFU are autonomous in BLE mode.
 - If no valid package is present, device defaults to AP mode for upload.
+
+## Issues & Troubleshooting
+
+- Please raise an issue [here](https://github.com/cra0/esp32-nordic-ota-dfu/issues).
+- Join the discord conversation [here](https://discord.com/channels/1343693475589263471/1484007435835543644).
+
