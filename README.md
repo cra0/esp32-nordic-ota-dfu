@@ -108,10 +108,10 @@ The reset button is always a hardware reboot.
 8. **To confirm it worked you type `ver` in the console**
 9. Then when you get the drone back you can always put it back into AP mode by holding the program/boot button for 5secs then view the logs to see what happened.
 
-## Supported devices (Note only the C6 has been tested properly)
+## Supported devices (Note only the C3 & C6 has been tested properly)
 - ESP32
 - ESP32-S3
-- ESP32-C3
+- **ESP32-C3**
 - **ESP32-C6**
 
 ## Notes
