@@ -22,6 +22,7 @@ You can use esptool to flash the merged.bin firmware (which contains everything)
 `esptool.exe --chip esp32 --port COM12 write-flash 0x0 esp32\blecent-esp32-merged.bin`
 
 Where chip sets the target chipset, port is the connected port and the path at the end points to the bin.
+Additionally you can always use web based flashers too like [Espressoflash](https://espressoflash.com/).
 
 
 ## What This Does
@@ -31,7 +32,10 @@ Where chip sets the target chipset, port is the connected port and the path at t
 3. Reboots into BLE update mode and automatically scans for DFU targets.
 4. Performs DFU and keeps logs you can review later from the web UI.
 
-## Step 0: It is important you have the OTAFix installed as the bootloader. [Please see here](https://github.com/oltaco/Adafruit_nRF52_Bootloader_OTAFIX)
+## Step 0: OTAFix Bootloader
+
+It is important you have the OTAFix installed as the bootloader for this to work properly. [Please see this page for info](https://github.com/oltaco/Adafruit_nRF52_Bootloader_OTAFIX).
+OTAFix is also crucial because if you do end up flashing a device that has been deployed without the OTAFix bootloader. At some stage you attempt a flash that goes wrong the device is now stuck and can only be recovered by plugging it into a PC with the USB port and doing an UF2 flash.
 
 ## Step 1: Connect to ESP32 AP
 
