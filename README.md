@@ -129,5 +129,5 @@ The reset button is always a hardware reboot.
 ## Issues & Troubleshooting
 
 - Please raise an issue [here](https://github.com/cra0/esp32-nordic-ota-dfu/issues).
-- Join the discord conversation [here](https://discord.com/channels/1343693475589263471/1484007435835543644).
+- Join the discord conversation [here](https://discord.com/channels/1495203904898728149/1497095298307067984).
 
