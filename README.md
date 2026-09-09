@@ -73,6 +73,60 @@ Open this URL in your browser:
   - Without package: normal reboot.
 - **View Logs**: opens detailed run history.
 
+## Status LED Configuration
+
+The ESP32 updater can use a regular onboard LED or an external GPIO LED to show
+scanning, transfer progress, and completion. Configure it from the **Status LED**
+section at `http://192.168.4.1/ui` while in Wi-Fi AP mode.
+
+1. Under **LED pin**, select **Board default**, **Disabled**, or an available GPIO.
+2. For a custom GPIO, choose **Active high**, or **Active low (inverted)** if your
+   LED turns on when the pin is low. Check your board's LED pin and polarity.
+3. Tap **Save LED settings**.
+4. Tap **Reboot** or **Reboot to BLE** to apply the setting.
+
+Settings survive power cycles and package deletion. Changes take effect only
+after reboot. **Reload settings** discards unsaved edits in the form. To restore
+the original behavior, select **Board default**, save, and reboot.
+
+### Default LED Pins
+
+| Updater target | Board default |
+| --- | --- |
+| ESP32-C6 / XIAO ESP32-C6 | GPIO 15, active high |
+| Classic ESP32 | GPIO 2, active high |
+| ESP32-C3 | Disabled; select the board's LED GPIO and polarity |
+| ESP32-S3 | Disabled; select the board's LED GPIO and polarity |
+
+These are firmware target defaults, not automatic board detection. Keeping
+**Board default** on the XIAO ESP32-C6 preserves its existing LED behavior.
+
+### What the LED Means
+
+| State | Indicator |
+| --- | --- |
+| Idle / waiting in Wi-Fi mode | Off |
+| Scanning for DFU targets | Slow blink |
+| Target found / connecting | Solid |
+| BLE firmware transfer | Fast blink |
+| Update succeeded | Solid during the success pause, then scanning resumes |
+| Wi-Fi package upload or failure | Rapid blink |
+
+A solid LED is also used while connecting. Look for the transfer blinking
+followed by solid illumination, and use **View Logs** to confirm the result.
+
+### LED Hardware Notes
+
+- GPIO numbers refer to the ESP32 chip's GPIOs, not header positions or `D` labels.
+- The dropdown excludes known flash/PSRAM, USB, UART0, button, and C6 antenna-switch
+  pins. Check your board's pinout before selecting a GPIO: other onboard devices
+  and boot-strapping requirements can make a listed pin unsuitable.
+- An external LED needs a series current-limiting resistor and appropriate wiring.
+- Addressable RGB LEDs, such as WS2812/NeoPixel, are not supported by this GPIO
+  indicator. Power LEDs wired directly to the supply cannot be controlled.
+- If **Status LED** is missing from the page, install a firmware build that
+  includes LED configuration and refresh the page.
+
 ## View Flash Logs Later
 
 From `/ui`, tap **View Logs** (or open `/logs`) to inspect previous DFU runs.
@@ -107,7 +161,7 @@ The reset button is always a hardware reboot.
 3. You then can press reboot to bluetooth or powercycle the esp32 it will then start its scanning constantly. You can pause the scan at any time by pressing the program/boot button. Holding down that button for 5 seconds will force it back into AP mode.
 4. You then yes login to the repeaters admin panel and go into the console and write `start ota` it will then give you the MAC address of the bluetooth advert.
 5. You then fly the drone or bring the device close to the repeater (if you have an external antenna it can work up to 10 meters)
-6. Typically the update takes 10 seconds but you can wait as long as you like. Right now there is no way to tell what happened *this is a problem for later for me to solve* 
+6. Update time varies with package size and signal strength. If a status LED is configured, it blinks during transfer and becomes solid during the success pause. See [Status LED Configuration](#status-led-configuration) for setup and blink meanings; use the logs to confirm the result.
 7. If you then try to login again to the device on the meshcore app and it worked and the clock was reset you can tell it worked.
 8. **To confirm it worked you type `ver` in the console**
 9. Then when you get the drone back you can always put it back into AP mode by holding the program/boot button for 5secs then view the logs to see what happened.
